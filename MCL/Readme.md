@@ -31,7 +31,7 @@ This repository contains R scripts for preprocessing Affymetrix 3′ expression 
 Example layout used in the scripts:
 
 ```text
-/Users/yourname/Downloads/MCL/WorkDir
+/Users/User/Downloads/MCL/WorkDir
 ├── 1/                      # Raw MCL .CEL files (batch 1)
 ├── 3/                      # Raw MCL .CEL files (batch 3)
 ├── 5/
@@ -74,7 +74,7 @@ If you are using newer ST-type Affymetrix arrays, you can adapt the commented `o
 In the first section of the script:
 
 ```r
-base_dir  <- "/Users/yourname/Downloads/MCL/WorkDir"
+base_dir  <- "/Users/User/Downloads/MCL/WorkDir"
 subfolders <- c("1", "3", "5", "7", "8")
 ```
 
@@ -91,7 +91,7 @@ subfolders <- c("1", "3", "5", "7", "8")
 In the second section:
 
 ```r
-setwd("/Users/yourname/Downloads/MCL/WorkDir/Expression files")
+setwd("/Users/User/Downloads/MCL/WorkDir/Expression files")
 files <- c(
   "MCL_microarray_gene_symbols_1.txt",
   "MCL_microarray_gene_symbols_3.txt",
