@@ -72,24 +72,6 @@ for (subdir in subfolders) {
   message("  -> Finished. Output file: ", out_filename, "\n")
 }
 
-###############################################################################
-# Note: If your arrays are modern ST-type arrays (not classic 3' expression arrays),
-# use the oligo package. For example:
-#
-# library(oligo)
-# for (subdir in subfolders) {
-#   path_to_cels <- file.path(base_dir, subdir)
-#   setwd(path_to_cels)
-#   celFiles <- list.celfiles(full.names=TRUE)
-#   affy_data <- read.celfiles(celFiles)   # Returns ExpressionFeatureSet
-#   eset <- rma(affy_data)
-#   # Then proceed with annotation & writing out similarly, 
-#   # but using a 'pd.*' annotation package if needed.
-# }
-###############################################################################
-
-
-
 
 ###########################################################################
 ##########                    Combine files.                  #############
@@ -129,32 +111,10 @@ files <- c(
 # 4) Read each file into a list of data frames
 list_dfs <- lapply(files, function(f) {
   df <- read.delim(f, header = TRUE, sep = "\t", stringsAsFactors = FALSE)
-  
-  # Optional: remove rows with missing GeneSymbol
-  # df <- df[!is.na(df$GeneSymbol) & df$GeneSymbol != "", ]
-  
-  # Optional: rename columns if needed to avoid duplicated sample names, e.g.:
-  # colnames(df) <- sub("\\.CEL$", "", colnames(df))
-  
   df
 })
 
 # 5) Merge all data frames by "GeneSymbol"
-#    "full_join()" keeps all GeneSymbols present in any file.
-#    If you only want GeneSymbols shared by all files, use "inner_join()" instead.
 combined_df <- reduce(list_dfs, function(x, y) {
   full_join(x, y, by = "GeneSymbol")
 })
-
-# 6) Write the combined table to a tab-delimited file
-#write.table(
-#  combined_df,
-#  file = "MCL_microarray_combined_by_gene_symbol.txt",
-#  sep = "\t",
-#  quote = FALSE,
-#  row.names = FALSE
-#)
-
-#cat("Done! Created 'MCL_microarray_combined_by_gene_symbol.txt'.\n")
-
-
