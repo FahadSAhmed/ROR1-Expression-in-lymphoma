@@ -152,8 +152,6 @@ Replace `"ROR1"` with your target of interest.
 
 ---
 
-## Notes
-
-- The workflow assumes de-identified data with no PHI.
-- This notebook is intended for exploratory analysis and visualization; it is **not** a clinical diagnostic tool.
+## Author
+Fahad S. Ahmed, MD
  
